@@ -19,11 +19,12 @@ namespace TornadoSlamFix
             Log.Init(Logger);
             Log.Info("Logger initialized");
 
-            IL.EntityStates.Drifter.TornadoSlam.OnEnter += FixTornadoSlam;
-            Log.Info("Tornado Slam fixed");
+            IL.EntityStates.Drifter.TornadoSlam.OnEnter += FixHitRate;
+            IL.EntityStates.Drifter.TornadoSlam.PlayAnimation += FixAnimationSpeed;
+            Log.Info("IL done");
         }
 
-        private static void FixTornadoSlam(ILContext il)
+        private static void FixHitRate(ILContext il)
         {
             ILCursor c = new(il);
 
@@ -34,8 +35,10 @@ namespace TornadoSlamFix
                     x => x.MatchDiv(),
                     x => x.MatchStfld("EntityStates.Drifter.TornadoSlam", "fireFrequency")
                 )) {
+
                 c.Index += 3;
                 c.Next.OpCode = OpCodes.Mul;
+
                 Log.Info("IL worked - fireFrequency");
             } else {
                 Log.Error("IL failed - fireFrequency");
@@ -48,11 +51,36 @@ namespace TornadoSlamFix
                     x => x.MatchDiv(),
                     x => x.MatchStfld("EntityStates.Drifter.TornadoSlam", "bounceDuration")
                 )) {
+
                 c.Index += 3;
                 c.Next.OpCode = OpCodes.Mul;
+
                 Log.Info("IL worked - bounceDuration");
             } else {
                 Log.Error("IL failed - bounceDuration");
+            }
+        }
+
+        private static void FixAnimationSpeed(ILContext il)
+        {
+            ILCursor c = new(il);
+
+            if (c.TryGotoNext(
+                    x => x.MatchLdstr("FullBody, Override"),
+                    x => x.MatchLdstr("TornadoLoop"),
+                    x => x.MatchLdstr("Tornado.playbackRate"),
+                    x => x.MatchLdarg(0),
+                    x => x.MatchLdfld("EntityStates.BaseState", "attackSpeedStat")
+                )) {
+
+                c.Index += 3;
+                c.Emit(OpCodes.Ldc_R4, 1f);
+                c.Index += 2;
+                c.Emit(OpCodes.Div);
+
+                Log.Info("IL worked - animation");
+            } else {
+                Log.Error("IL failed - animation");
             }
         }
     }
