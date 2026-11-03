@@ -19,8 +19,7 @@ namespace TornadoSlamFix
             Log.Init(Logger);
             Log.Info("Logger initialized");
 
-            Log.Info("lalala");
-            IL.EntityStates.Drifter.TornadoSlam.FixedUpdate += FixTornadoSlam;
+            IL.EntityStates.Drifter.TornadoSlam.OnEnter += FixTornadoSlam;
             Log.Info("Tornado Slam fixed");
         }
 
@@ -29,11 +28,11 @@ namespace TornadoSlamFix
             ILCursor c = new(il);
 
             if (c.TryGotoNext(
-                    x => x.MatchLdfld<float>("baseFireFrequency"),
+                    x => x.MatchLdfld("EntityStates.Drifter.TornadoSlam", "baseFireFrequency"),
                     x => x.MatchLdarg(0),
-                    x => x.MatchLdfld<float>("attackSpeedStat"),
+                    x => x.MatchLdfld("EntityStates.BaseState", "attackSpeedStat"),
                     x => x.MatchDiv(),
-                    x => x.MatchStfld<float>("fireFrequency")
+                    x => x.MatchStfld("EntityStates.Drifter.TornadoSlam", "fireFrequency")
                 )) {
                 c.Index += 3;
                 c.Next.OpCode = OpCodes.Mul;
@@ -43,11 +42,11 @@ namespace TornadoSlamFix
             }
 
             if (c.TryGotoNext(
-                    x => x.MatchLdfld<float>("baseBounceDuration"),
+                    x => x.MatchLdfld("EntityStates.Drifter.TornadoSlam", "baseBounceDuration"),
                     x => x.MatchLdarg(0),
-                    x => x.MatchLdfld<float>("attackSpeedStat"),
+                    x => x.MatchLdfld("EntityStates.BaseState", "attackSpeedStat"),
                     x => x.MatchDiv(),
-                    x => x.MatchStfld<float>("bounceDuration")
+                    x => x.MatchStfld("EntityStates.Drifter.TornadoSlam", "bounceDuration")
                 )) {
                 c.Index += 3;
                 c.Next.OpCode = OpCodes.Mul;
