@@ -1,9 +1,25 @@
-# Example Plugin
+# Tornado Slam Fix
 
-This repository contains a sample mod for Risk of Rain 2.
+Risk of Rain 2 mod that fixes inverse attack speed scaling of Drifter's alternate utility - Tornado Slam.
 
-You can clone this repository, open the visual studio solution file and compile it immediately.
+### Vanilla behaviour:
+ - More attack speed -> more time between bounces and same enemy hits.
+ 
 
-This repository is meant to represent best practices for starting a simple mod.
+### With this mod:
+ - More attack speed -> less time between bounces and same enemy hits.
+ 
 
-Once your mod get compiled, you can utilize the Thunderstore folder for later uploading it to https://thunderstore.io/c/riskofrain2/
+
+
+
+yeah...
+
+
+
+
+why is everyone okay with that???
+
+...what? literally no one uses this skill?
+
+it's really fun. try it right now!!
