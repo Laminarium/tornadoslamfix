@@ -1,11 +1,9 @@
 using BepInEx;
 using Mono.Cecil.Cil;
 using MonoMod.Cil;
-using R2API;
 
 namespace TornadoSlamFix
 {
-    [BepInDependency(ItemAPI.PluginGUID)]
     [BepInPlugin(PluginGUID, PluginName, PluginVersion)]
     public class TornadoSlamFix : BaseUnityPlugin
     {
@@ -17,11 +15,9 @@ namespace TornadoSlamFix
         public void Awake()
         {
             Log.Init(Logger);
-            Log.Info("Logger initialized");
 
             IL.EntityStates.Drifter.TornadoSlam.OnEnter += FixHitRate;
             IL.EntityStates.Drifter.TornadoSlam.PlayAnimation += FixAnimationSpeed;
-            Log.Info("IL done");
         }
 
         private static void FixHitRate(ILContext il)
@@ -38,8 +34,6 @@ namespace TornadoSlamFix
 
                 c.Index += 3;
                 c.Next.OpCode = OpCodes.Mul;
-
-                Log.Info("IL worked - fireFrequency");
             } else {
                 Log.Error("IL failed - fireFrequency");
             }
@@ -54,8 +48,6 @@ namespace TornadoSlamFix
 
                 c.Index += 3;
                 c.Next.OpCode = OpCodes.Mul;
-
-                Log.Info("IL worked - bounceDuration");
             } else {
                 Log.Error("IL failed - bounceDuration");
             }
@@ -77,8 +69,6 @@ namespace TornadoSlamFix
                 c.Emit(OpCodes.Ldc_R4, 1f);
                 c.Index += 2;
                 c.Emit(OpCodes.Div);
-
-                Log.Info("IL worked - animation");
             } else {
                 Log.Error("IL failed - animation");
             }

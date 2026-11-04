@@ -1,11 +1,13 @@
+![Icon](https://i.imgur.com/SNQc1Z0.png)
+
 # Tornado Slam Fix
 
 Risk of Rain 2 mod that fixes inverse attack speed scaling of Drifter's alternate utility - Tornado Slam.
 
 ### Vanilla behaviour
  More attack speed means:
- - more time between same enemy hits;
- - more time between bounces;
+ - less frequent same enemy hits;
+ - less frequent bounces;
  - slower spinning animation.
  
 yeah...
@@ -18,15 +20,16 @@ it's really fun. try it right now, because...
 
 ### With this mod
  More attack speed means:
- - LESS time between same enemy hits (more damage!);
- - LESS time between bounces (ping pong!!);
- - FASTER spinning animation (weeeeeee!!!).
+ - MORE frequent same enemy hits **(more damage!)**;
+ - MORE frequent bounces **(ping pong!!)**;
+ - FASTER spinning animation **(weeeeeee!!!)**.
  
+ Mod icon by [Butyash](https://x.com/butyashi)
+ 
+ /
+ 
+ \
+ 
+ /
  
 reposes stil betr
-
-
-
-
-
-
